@@ -1,13 +1,9 @@
 export default {
+    fetching: false,
     dashboards: [],
+    currentDashboard: {},
     posts: [],
+    currentPost: {},
     comments: [],
     test: 1,
-    user: {},
-    rndmItems: [{
-        id: 0,
-        value: undefined,
-    }],
-    rndmTeams: [],
-    rndmTeamCount: 2,
 };

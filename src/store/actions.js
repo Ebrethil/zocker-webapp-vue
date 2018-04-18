@@ -1,23 +1,5 @@
 export default {
-    // posts ({ commit }, dashboardId) {
-    //     fetch('/api/posts/' + dashboardId, {
-    //         method: 'GET',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ dashboardId: dashboardId }),
-    //     })
-    //     .then(function (response) {
-    //         if(response.data) {
-    //             commit('posts', response.data)
-    //         }
-    //     })
-    //     .catch(function (error) {
-    //         console.error(error);
-    //     });
-    // },
-
-    fetchDashboards ({ commit }) {
+    fetchDashboards({ commit }) {
         fetch('/api/dashboards', {
             method: 'GET',
             headers: {
@@ -35,8 +17,26 @@ export default {
                 console.error(error);
             });
     },
-    fetchPost ({ commit }, postId) {
-        fetch('/api/posts?postId=' + postId, {
+    fetchCurrentDashboard({ commit }, dashboardId) {
+        fetch('/api/dashboard/' + dashboardId, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        })
+            .then(response =>response.json())
+            .then((data) => {
+                if (data) {
+                    commit('currentDashboard', data)
+                }
+
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    },
+    fetchPosts({ commit }) {
+        fetch('/api/posts', {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -53,22 +53,40 @@ export default {
                 console.error(error);
             });
     },
+    fetchCurrentPost({ commit }, postId) {
+        fetch('/api/posts/' + postId, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        })
+            .then(response =>response.json())
+            .then((data) => {
+                if (data) {
+                    commit('currentPost', data)
+                }
 
-    // dashboard ({ commit }, dashboardId) {
-    //     fetch('/api/fetchDashboards/' + dashboardId, {
-    //         method: 'GET',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //         },
-    //         body: JSON.stringify({ dashboardId: dashboardId }),
-    //     })
-    //         .then(function (response) {
-    //             if(response.data) {
-    //                 commit('dashboard', response.data)
-    //             }
-    //         })
-    //         .catch(function (error) {
-    //             console.error(error);
-    //         });
-    // },
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    },
+    fetchComments({ commit }, postId) {
+        fetch('/api/comments?postId=' + postId, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+            },
+        })
+            .then(response =>response.json())
+            .then((data) => {
+                if (data) {
+                    commit('comments', data)
+                }
+
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    },
 };

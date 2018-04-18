@@ -1,9 +1,9 @@
 <template :style="{ display: visibility}">
     <div>
         <h2>New Dashboard</h2>
-        <input class="input-field" v-model="dashboard.title"/>
-        <button @click="submit(dashboard)">create Dashboard</button>
-        <button @click="hideModal">X</button>
+        <input class="input" v-model="dashboard.title"/>
+        <button class="button" @click="submit(dashboard)">create Dashboard</button>
+        <button class="button" @click="hideModal">X</button>
     </div>
 </template>
 
@@ -30,17 +30,14 @@
                         },
                         body: JSON.stringify(dashboard),
                     })
-                        .then(response => response.json())
                         .then((data) => {
-                            if (data) {
-                                this.posts = data;
-                            }
+                            this.fetchDashboards();
 
                         })
                         .catch(function (error) {
                             console.error(error);
                         });
-                    this.fetchDashboards();
+
 
                     this.hideModal();
                 }
@@ -49,12 +46,21 @@
                 this.$emit('close-modal', 'none');
             },
             isValid(dashboard) {
-                return dashboard.title !== '' || dashboard.title !== undefined
+                return dashboard.title !== '' && dashboard.title !== undefined;
             },
         },
     }
 </script>
 
 <style scoped>
+    .input {
 
+    }
+    .button {
+        cursor: pointer;
+        line-height: 0;
+        margin: 16px;
+        padding: 20px;
+        border: 1px solid mediumseagreen;
+    }
 </style>

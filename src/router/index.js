@@ -8,6 +8,7 @@ import Testing from './../components/Testing.vue';
 import DashboardList from '../components/dashboard/DashboardList.vue';
 import Dashboard from '../components/dashboard/Dashboard.vue';
 import Post from '../components/dashboard/Post.vue';
+import CreatePost from '../components/dashboard/CreatePost.vue';
 
 Vue.use(Router);
 
@@ -20,7 +21,8 @@ export default new Router({
         { path: '/test', name: 'test', component: Testing },
         { path: '/dashboards', name: 'dashboards', component: DashboardList },
         { path: '/dashboard/:id', name: 'dashboard', component: Dashboard},
-        { path: '/post/:id', name: 'post', component: Post}
+        { path: '/posts/:id', name: 'post', component: Post},
+        { path: '/create-post/:id', name: 'post', component: CreatePost},
     ],
     mode: 'history',
 });

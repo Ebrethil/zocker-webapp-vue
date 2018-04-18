@@ -19,7 +19,7 @@
     import { mapActions } from 'vuex';
     import dashboards from '../../store/getters';
     import CreateDashboard from './CreateDashboard.vue';
-    import ClickOutside from 'vue-click-outside'
+    import ClickOutside from 'vue-click-outside';
 
     export default {
         name: "DashboardList",
@@ -52,7 +52,6 @@
         },
         components: {
             CreateDashboard,
-            'create-dashboard': CreateDashboard,
         },
         directives: {
             ClickOutside
@@ -101,10 +100,12 @@
         transform: translate(-50%, -50%);
         padding: 40px 100px;
         width: 680px; /* Full width */
-        height: 580px; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-        color: white;
+        height: 380px; /* Full height */
+        /*overflow: auto; /* Enable scroll if needed */
+        /*background-color: rgb(0,0,0); /* Fallback color */
+        /*background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        background-color: white;
+        border: 1px solid mediumseagreen;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 </style>

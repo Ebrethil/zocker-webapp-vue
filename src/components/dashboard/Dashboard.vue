@@ -7,9 +7,13 @@
                 <th class="post-prop">Title</th>
                 <th class="post-prop">Content</th>
             </tr>
-            <tr v-for="post in posts" class="post">
+            <tr v-for="post in posts" class="post" @click="openPost(post.id)">
                 <td class="post-title post-prop">{{ post.title }}</td>
                 <td class="post-descr post-prop">{{ post.content.substr(0, 70) }} ...</td>
+            </tr>
+            <tr @click="createPost()" class="post">
+                <td class="post-prop">+</td>
+                <td class="post-prop">Create Post</td>
             </tr>
         </table>
     </div>
@@ -24,7 +28,7 @@
         data() {
             return {
                 dashboardId: this.$route.params.id,
-                posts: [{ title: 'Wow!', content: 'Such empty!' }],
+                posts: [{ title: '', content: '' }],
             };
         },
         computed: {
@@ -36,6 +40,12 @@
             ...mapActions([
                 'fetchDashboards'
             ]),
+            openPost(id) {
+                this.$router.push('/posts/' + id)
+            },
+            createPost() {
+                this.$router.push('/create-post/' + this.dashboardId);
+            },
         },
         beforeMount() {
             this.fetchDashboards();
